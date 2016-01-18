@@ -57,13 +57,26 @@ public interface ALDAQueue<E> extends Iterable<E> {
 	public int discriminate(E e);
 
 }
+
 public class ALDAQueueHB<E> implements ALDAQueue<E> {
-	
-	private int capacity;
-	
+
+	private static class Node<E> {
+		E data;
+		Node next;
+
+		public Node(E data) {
+			this.data = data;
+		}
+
+		public Node(E data, Node next) {
+			this.next = next;
+		}
+	}
+
 	private Node<E> first;
 	private Node<E> last;
-	
+	private int capacity;
+
 	public ALDAQueueHB(int capacity) {
 		this.capacity = capacity;
 	}
@@ -76,13 +89,20 @@ public class ALDAQueueHB<E> implements ALDAQueue<E> {
 
 	@Override
 	public void add(E element) {
-		Node<E> node = new Node<E>(E);
+		if (first == null) {
+			first = new Node<E>(element);
+			last = first;
+		}
+		else {
+			last.next = new Node<E>(element);
+			last = last.next;
+		}
 	}
 
 	@Override
 	public void addAll(Collection<? extends E> c) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -100,7 +120,7 @@ public class ALDAQueueHB<E> implements ALDAQueue<E> {
 	@Override
 	public void clear() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -137,13 +157,5 @@ public class ALDAQueueHB<E> implements ALDAQueue<E> {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-}
 
-private static class Node<E> {
-	E data;
-	Node next;
-	public Node(E data){
-		this.data = data;
-	}
 }
