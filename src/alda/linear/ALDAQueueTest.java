@@ -50,12 +50,12 @@ public class ALDAQueueTest {
 	private static final int DEFAULT_CAPACITY = 100;
 
 	@SuppressWarnings("unchecked")
-	private static <E> ALDAQueue<E> createNewQueue(int size) {
+	private static <E> MyALDAQueueHB<E> createNewQueue(int size) {
 		try {
-			Class<ALDAQueue<E>> queueClass = (Class<ALDAQueue<E>>) Class.forName(IMPLEMENTATION_CLASS_NAME);
+			Class<MyALDAQueueHB<E>> queueClass = (Class<MyALDAQueueHB<E>>) Class.forName(IMPLEMENTATION_CLASS_NAME);
 			// Here we assume that there is exactly one constructor that takes
 			// the capacity as an argument
-			return (ALDAQueue<E>) queueClass.getConstructors()[0].newInstance(size);
+			return (MyALDAQueueHB<E>) queueClass.getConstructors()[0].newInstance(size);
 		} catch (InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException
 				| SecurityException | ClassNotFoundException e) {
 			// e.printStackTrace();
@@ -67,11 +67,11 @@ public class ALDAQueueTest {
 
 	}
 
-	private static ALDAQueue<String> createNewStringQueue() {
+	private static MyALDAQueueHB<String> createNewStringQueue() {
 		return createNewQueue(DEFAULT_CAPACITY);
 	}
 
-	private static ALDAQueue<Integer> createNewIntegerQueue() {
+	private static MyALDAQueueHB<Integer> createNewIntegerQueue() {
 		return createNewQueue(DEFAULT_CAPACITY);
 	}
 
@@ -88,7 +88,7 @@ public class ALDAQueueTest {
 		}
 	}
 
-	private void testQueueProperties(ALDAQueue<?> queue, boolean empty, boolean full, int size, int totalCapacity,
+	private void testQueueProperties(MyALDAQueueHB<?> queue, boolean empty, boolean full, int size, int totalCapacity,
 			int currentCapacity) {
 		assertEquals(empty, queue.isEmpty());
 		assertEquals(full, queue.isFull());
@@ -97,7 +97,7 @@ public class ALDAQueueTest {
 		assertEquals(currentCapacity, queue.currentCapacity());
 	}
 
-	private void testQueueProperties(ALDAQueue<?> queue, boolean empty, boolean full, int size, int totalCapacity,
+	private void testQueueProperties(MyALDAQueueHB<?> queue, boolean empty, boolean full, int size, int totalCapacity,
 			int currentCapacity, String toString) {
 		testQueueProperties(queue, empty, full, size, totalCapacity, currentCapacity);
 		assertEquals(toString, queue.toString());
@@ -105,18 +105,18 @@ public class ALDAQueueTest {
 
 	@Test
 	public void testObviousImplementationErrors() {
-		ALDAQueue<String> queue = createNewStringQueue();
+		MyALDAQueueHB<String> queue = createNewStringQueue();
 
 		for (Field f : queue.getClass().getDeclaredFields()) {
 			testField(f);
 		}
 	}
 
-//	@Test(expected = IllegalArgumentException.class)
-//	public void testZeroCapacity() {
-//		createNewQueue(0);
-//	}
-//
+	@Test(expected = IllegalArgumentException.class)
+	public void testZeroCapacity() {
+		createNewQueue(0);
+	}
+
 //	@Test(expected = IllegalArgumentException.class)
 //	public void testNegativeCapacity() {
 //		createNewQueue(-1);
