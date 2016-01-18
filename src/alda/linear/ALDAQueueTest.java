@@ -117,17 +117,17 @@ public class ALDAQueueTest {
 		createNewQueue(0);
 	}
 
-//	@Test(expected = IllegalArgumentException.class)
-//	public void testNegativeCapacity() {
-//		createNewQueue(-1);
-//	}
-//
-//	@Test
-//	public void testEmptyQueueProperties() {
-//		ALDAQueue<String> queue = createNewStringQueue();
-//		testQueueProperties(queue, true, false, 0, DEFAULT_CAPACITY, DEFAULT_CAPACITY, "[]");
-//	}
-//
+	@Test(expected = IllegalArgumentException.class)
+	public void testNegativeCapacity() {
+		createNewQueue(-1);
+	}
+
+	@Test
+	public void testEmptyQueueProperties() {
+		ALDAQueue<String> queue = createNewStringQueue();
+		testQueueProperties(queue, true, false, 0, DEFAULT_CAPACITY, DEFAULT_CAPACITY, "[]");
+	}
+
 //	@Test
 //	public void testPeekOnEmptyQueue() {
 //		assertEquals(null, createNewStringQueue().peek());

@@ -23,6 +23,9 @@ public class MyALDAQueueHB<E> implements ALDAQueue<E> {
 	private int capacity;
 
 	public MyALDAQueueHB(int capacity) {
+		if (capacity <1)
+			throw new IllegalArgumentException("Can't be smaller than 1!");
+		else
 		this.capacity = capacity;
 	}
 
