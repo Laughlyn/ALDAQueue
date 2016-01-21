@@ -51,6 +51,9 @@ public class MyALDAQueueHB<E> implements ALDAQueue<E> {
 
 		@Override
 		public E next() {
+			if (first == null) {
+				throw new NoSuchElementException();
+			}
 			if (current == null) {
 				current = first;
 				return current.data;
@@ -158,27 +161,6 @@ public class MyALDAQueueHB<E> implements ALDAQueue<E> {
 	public int currentCapacity() {
 		return capacity;
 	}
-
-	// @Override
-	// public int discriminate(E e) {
-	// int matches = 0;
-	// MyALDAQueueHB<E> tempQ = new MyALDAQueueHB<E>(totCapacity);
-	// Iterator<E> iter = this.iterator();
-	// for (E ee : this) {
-	// if(ee == e) {
-	// matches++;
-	// if(iter.hasNext()) {
-	// first = first.next;
-	// capacity++;
-	// tempQ.add(e);
-	// }
-	// }
-	// }
-	// for (E ee : tempQ) {
-	// this.add(ee);
-	// }
-	// return matches;
-	// }
 
 	@Override
 	public int discriminate(E e) {

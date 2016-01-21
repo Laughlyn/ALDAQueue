@@ -368,84 +368,84 @@ public class ALDAQueueTest {
 	 iter.next();
 	 }
 	
-	// @Test(expected=NoSuchElementException.class)
-	// public void testIterator() {
-	// ALDAQueue<String> queue = createNewStringQueue();
-	// for(String s: STRINGS){
-	// queue.add(s);
-	// }
-	// Iterator<String> iter = queue.iterator();
-	// for(String s: STRINGS){
-	// assertTrue(iter.hasNext());
-	// assertEquals(s, iter.next());
-	// }
-	// assertFalse(iter.hasNext());
-	// iter.next();
-	// }
-	//
-	//
-	// @Test
-	// public void testRandomOperations() {
-	// Random rnd = new Random();
-	// final int CAPACITY = 10;
-	//
-	// ALDAQueue<String> queue = createNewQueue(CAPACITY);
-	// Queue<String> oracle = new LinkedList<>();
-	// for (int n = 0; n < 1000; n++) {
-	// switch (rnd.nextInt(15)) {
-	// case 0:
-	// case 1:
-	// case 2:
-	// case 3:
-	// case 4:
-	// if (!queue.isFull()) {
-	// String str = "" + rnd.nextInt(CAPACITY);
-	// queue.add(str);
-	// oracle.add(str);
-	// }
-	// break;
-	// case 5:
-	// case 6:
-	// case 7:
-	// case 8:
-	// case 9:
-	// if (!queue.isEmpty()) {
-	// assertEquals(oracle.remove(), queue.remove());
-	// }
-	// break;
-	// case 10:
-	// while (!queue.isFull()) {
-	// String str = "" + rnd.nextInt(CAPACITY);
-	// queue.add(str);
-	// oracle.add(str);
-	// }
-	// break;
-	// case 11:
-	// queue.clear();
-	// oracle.clear();
-	// break;
-	// case 12:
-	// if (!queue.isEmpty()) {
-	// String str = "" + rnd.nextInt(CAPACITY);
-	// int count = queue.discriminate(str);
-	// for (int m = 0; m < count; m++) {
-	// assertTrue(oracle.remove(str));
-	// }
-	// for (int m = 0; m < count; m++) {
-	// oracle.add(str);
-	// }
-	// }
-	// break;
-	// case 13:
-	// case 14:
-	// // Left if we need more later
-	// }
-	//
-	// testQueueProperties(queue, oracle.isEmpty(), oracle.size() == CAPACITY,
-	// oracle.size(), CAPACITY, CAPACITY
-	// - oracle.size(), oracle.toString());
-	// }
-	//
-	// }
+	 @Test(expected=NoSuchElementException.class)
+	 public void testIterator() {
+	 ALDAQueue<String> queue = createNewStringQueue();
+	 for(String s: STRINGS){
+	 queue.add(s);
+	 }
+	 Iterator<String> iter = queue.iterator();
+	 for(String s: STRINGS){
+	 assertTrue(iter.hasNext());
+	 assertEquals(s, iter.next());
+	 }
+	 assertFalse(iter.hasNext());
+	 iter.next();
+	 }
+	
+	
+	 @Test
+	 public void testRandomOperations() {
+	 Random rnd = new Random();
+	 final int CAPACITY = 10;
+	
+	 ALDAQueue<String> queue = createNewQueue(CAPACITY);
+	 Queue<String> oracle = new LinkedList<>();
+	 for (int n = 0; n < 1000000; n++) {
+	 switch (rnd.nextInt(15)) {
+	 case 0:
+	 case 1:
+	 case 2:
+	 case 3:
+	 case 4:
+	 if (!queue.isFull()) {
+	 String str = "" + rnd.nextInt(CAPACITY);
+	 queue.add(str);
+	 oracle.add(str);
+	 }
+	 break;
+	 case 5:
+	 case 6:
+	 case 7:
+	 case 8:
+	 case 9:
+	 if (!queue.isEmpty()) {
+	 assertEquals(oracle.remove(), queue.remove());
+	 }
+	 break;
+	 case 10:
+	 while (!queue.isFull()) {
+	 String str = "" + rnd.nextInt(CAPACITY);
+	 queue.add(str);
+	 oracle.add(str);
+	 }
+	 break;
+	 case 11:
+	 queue.clear();
+	 oracle.clear();
+	 break;
+	 case 12:
+	 if (!queue.isEmpty()) {
+	 String str = "" + rnd.nextInt(CAPACITY);
+	 int count = queue.discriminate(str);
+	 for (int m = 0; m < count; m++) {
+	 assertTrue(oracle.remove(str));
+	 }
+	 for (int m = 0; m < count; m++) {
+	 oracle.add(str);
+	 }
+	 }
+	 break;
+	 case 13:
+	 case 14:
+	 // Left if we need more later
+	 }
+	
+	 testQueueProperties(queue, oracle.isEmpty(), oracle.size() == CAPACITY,
+	 oracle.size(), CAPACITY, CAPACITY
+	 - oracle.size(), oracle.toString());
+	 }
+	
+	 }
 
 }
