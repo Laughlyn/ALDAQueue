@@ -1,7 +1,6 @@
 package alda.linear;
 
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * This is the list interface you should implement. It is a simplified version
