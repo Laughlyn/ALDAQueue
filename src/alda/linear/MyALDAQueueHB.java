@@ -13,10 +13,6 @@ public class MyALDAQueueHB<E> implements ALDAQueue<E> {
 		public Node(E data) {
 			this.data = data;
 		}
-
-		// public Node(E data, Node<E> next) {
-		// this.next = next;
-		// }
 	}
 
 	private Node<E> first;
@@ -172,14 +168,13 @@ public class MyALDAQueueHB<E> implements ALDAQueue<E> {
 			MyALDAQueueHB<E> tempQ2 = new MyALDAQueueHB<E>(totCapacity);
 			MyALDAQueueHBIterator iter = new MyALDAQueueHBIterator();
 			while (iter.hasNext()) {
-				if (iter.next() == e) {
+				if (iter.next().equals(e)) {
 					matches++;
-					if (iter.current == first) {
-						first = first.next;
-						capacity++;
-						tempQ.add(iter.current.data);
-					}
-				} else {
+					first = first.next;
+					capacity++;
+					tempQ.add(iter.current.data);
+				}
+				else {
 					first = first.next;
 					capacity++;
 					tempQ2.add(iter.current.data);

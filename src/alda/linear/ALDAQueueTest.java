@@ -334,6 +334,22 @@ public class ALDAQueueTest {
 	 testQueueProperties(queue, false, false, 8, DEFAULT_CAPACITY,
 	 DEFAULT_CAPACITY - 8, "[B, C, A, A, A, A, A, A]");
 	 }
+	 
+	 @Test
+	 public void testDiscriminateOnMultipleElementsOnly2() {
+	 ALDAQueue<String> queue = createNewStringQueue();
+	 queue.add(A_STRING);
+	 queue.add(A_STRING);
+	 queue.add(A_STRING);
+	 queue.add(A_STRING);
+	 queue.add(A_STRING);
+	 queue.add(A_STRING);
+	 queue.add(A_STRING);
+	 queue.add(A_STRING);
+	 assertEquals(8, queue.discriminate(A_STRING));
+	 testQueueProperties(queue, false, false, 8, DEFAULT_CAPACITY,
+	 DEFAULT_CAPACITY - 8, "[A, A, A, A, A, A, A, A]");
+	 }
 	
 	 @Test(expected = NullPointerException.class)
 	 public void testDiscriminateNull() {
